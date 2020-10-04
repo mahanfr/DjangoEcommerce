@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load price_template_tags %}
+{% block content %}
+<div class="mx-5">
+    <h4 class="text-center my-2">سبد خرید شما</h4>
+    <hr>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped table-dark table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">محصول</th>
+                <th scope="col">قیمت</th>
+                <th scope="col">تعداد</th>
+                <th scope="col">قیمت کل</th>
+                <th scope="col">حذف</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order_item in object.items.all %}
+                <tr>
+                    <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{% url 'product' order_item.product.id %}">{{ order_item.product.title }}</a></td>
+                    <td class="text-center">{{ order_item.product.price|price_toman_tag }}</td>
+                    <td class="text-center">
+                        <a class="mx-1" href="{% url 'add-to-cart' order_item.product.id %}"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                        {{ order_item.quantity }}
+                        <a class="mx-1" href="{% url 'remove-from-cart' order_item.product.id %}"><i class="fa fa-minus" aria-hidden="true"></i></a>
+                    </td>
+                    <td class="text-center">{{ order_item.getTotalPrice|price_toman_tag }}</td>
+                    <td class="text-center"><a class="btn btn-danger" href="{% url 'Delete-product-from-cart' order_item.product.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th style="visibility:hidden !important;" colspan="2" scope="row"> </th>
+                <td colspan="2">قیمت کل</td>
+                <td colspan="2">{{object.getTotalPrice|price_toman_tag}}</td>
+            </tr>
+            <tr>
+                <th style="visibility:hidden !important;" colspan="2" scope="row"> </th>
+                <td colspan="2">تخفیف</td>
+                <td colspan="2" >{{object.getTotalDiscount|price_toman_tag}}</td>
+            </tr>
+            <tr>
+                <th style="visibility:hidden !important;" colspan="2" scope="row"> </th>
+                <td colspan="2">قیمت نهایی</td>
+                <td colspan="2">{{object.getFinalPrice|price_toman_tag}}</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="row mr-2 mt-3">
+        {% if object.getSumQuantity > 0 %}
+        <a class="btn btn-danger" href="{% url 'checkout' %}">ادامه فرآیند خرید</a>
+        {% endif %}
+        <a class="btn btn-success mr-3" href="{% url 'allproducts' %}">اضافه کردن محصولات بیشتر</a>
+    </div>
+</div>
+{% endblock content %}

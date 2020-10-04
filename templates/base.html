@@ -1,0 +1,108 @@
+{% load static %}
+{% load cart_template_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}هومان شاپ{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-rtl.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    {% block head %}{% endblock head %}
+    <script>
+        setInterval(function(){
+            var doc = document.getElementById("messages");
+            if(doc != null){
+                doc.remove();
+            }
+        },3000);
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark scrolling-navbar" style="background: #1D3557 !important;">
+            <div class="container">
+
+                <!-- Brand -->
+                <a class="navbar-brand waves-effect" href="{%url 'index' %}">
+                    <strong class="blue-text">هومان شاپ</strong>
+                </a>
+
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Left -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'allproducts' %}">محصولات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'categories' %}">دسته بندی ها</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'support' %}">پشتیبانی</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'about' %}">تماس با ما</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right -->
+                    <ul class="navbar-nav nav-flex-icons">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a href="{% url 'order-summary' %}" class="nav-link waves-effect">
+                            <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count}} </span>
+                            <i class="fas fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link waves-effect">
+                            <i class="fas fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="nav-link waves-effect">
+                            <i class="fa fa-sign-out fa-lg"></i>
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}" class="nav-link waves-effect">
+                            ورود
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'register' %}" class="nav-link waves-effect">
+                            ثبت نام
+                            </a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+        {% if messages %}
+            <div class="mx-5 mt-2" id="messages">
+                {% for message in messages %}
+                    <div id="success-alert" class="alert alert-{{ message.tags }}" role="alert">{{message}}</div>
+                {% endfor %}
+            </div> 
+        {% endif %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+</body>
+</html>

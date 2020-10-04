@@ -1,0 +1,96 @@
+body{
+  background: #f1faee !important;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #111;
+    overflow: hidden;
+}
+
+.p-image{
+    height:400px;
+    width:auto;/*maintain aspect ratio*/
+    max-width:800px;
+}
+
+.c-image{
+    height:200px;
+    width:auto;/*maintain aspect ratio*/
+    max-width:400px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #0055fd;
+  color: white;
+  font-size: 17px;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: left;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 600px) {
+    .topnav a:not(.active) {
+        display: none;
+    }
+    .topnav a.icon {
+      float: left;
+      display: block;
+    }
+  }
+  
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  @media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+
+    .topnav-right {
+        position: relative;
+    }
+    
+    .topnav.responsive a.icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .topnav-right{
+        float: right;
+    }
+
+    .topnav-right a {
+        float: none;
+        display: block;
+        text-align: right;
+    }
+    .topnav.responsive a {
+      float: none;
+      display: block;
+      text-align: right;
+    }
+  }

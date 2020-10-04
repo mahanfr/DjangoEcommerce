@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="content-section mx-2">
+        {% if form.errors %}
+           <p style="color: red">
+               Please correct the error{{ form.errors|pluralize }} below.
+           </p>
+        {% endif %}
+        <div class="card mt-5 col-lg-6 mx-auto">
+        <div class="card-body text-center">
+            <legend class="border-bottom mb-4">ورود به حساب کاربری</legend>
+            <form class="mr-3" action="" method="POST" style="direction: rtl;">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div style="color: crimson;">
+                        {{ form.username.errors }}
+                    </div>                    
+                    <label for="username" class="control-label">نام کاربری:</label>
+                    <div class="px-5" style="direction:ltr;">
+                        <input class="form-control" id="username" name="{{ form.username.name }}" type="text" placeholder="Username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div style="color: crimson;">
+                        {{ form.password.errors }}
+                    </div>
+                    <label for="password" class="control-label">رمز عبور:</label>
+                    <div class="px-5" style="direction: ltr;">
+                        <input class="form-control" id="password" name="{{ form.password.name }}" type="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">ورود</button>
+                </div>
+            </form>
+            <div class="border-tp pt-1 mb-3 mr-3">
+                <small class="text-muted">اکانت کاربری نداری؟<a class="mr-2" href="{% url 'register' %}">ثبت نام</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

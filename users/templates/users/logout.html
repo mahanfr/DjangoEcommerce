@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block head %}
+<script>
+    setInterval(function(){window.location.href = "{% url 'index' %}";},3000);
+</script>
+{% endblock head %}
+{% block content %}
+<div class="content-section mx-5">
+    <div class="card mt-5 col-lg-6 mx-auto">
+        <div class="card-body text-center">
+            <legend class="mb-4">خروج از حساب کاربری</legend>
+            <hr>
+            <p class="mb-4">شما از حساب کاربری خود خارج شدید.</p>
+            <a class="btn btn-primary" href="{% url 'login' %}">ورود دوباره</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

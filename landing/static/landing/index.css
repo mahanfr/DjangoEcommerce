@@ -1,0 +1,42 @@
+.pagination.pg-blue .page-item.active .page-link, .pagination.pg-blue .page-item.active .page-link:hover {
+    background-color: #4285f4;
+}
+
+.pagination {
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+}
+
+.page-item:last-child .page-link {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+a.waves-effect, a.waves-light {
+    display: inline-block;
+}
+.waves-effect {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: #4285f4;
+    border-radius: .125rem;
+    transition: all .2s linear;
+}
+.pagination .page-item .page-link {
+    font-size: .9rem;
+    color: #212529;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    transition: all .3s linear;
+}

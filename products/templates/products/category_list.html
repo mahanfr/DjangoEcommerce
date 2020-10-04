@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for cat in categories %}
+        <div class="card my-4 mx-4">
+            <a href="">{{ cat }}</a>
+        </div>
+    {% endfor %}
+{% endblock content %}
+

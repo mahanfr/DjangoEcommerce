@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'landing/index.css' %}">
+{% endblock head %}
+{% block content %}
+    <section class="text-center mt-5 mb-4 mx-5">
+        <div class="row wow">
+            {% for product in products %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <!--Card-->
+                <div class="card">
+    
+                  <!--Card image-->
+                  <div class="view overlay mt-3">
+                        <img src="{{ product.getMainImage.image.url }}" class="c-image card-img-top" alt="">
+                        <a>
+                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                        </a>
+                  </div>
+                  <!--Card image-->
+    
+                  <!--Card content-->
+                  <div class="card-body text-center">
+                    <!--Category & Title-->
+                    <a href="" class="grey-text">
+                      <h5>Shirt</h5>
+                    </a>
+                    <h5>
+                      <strong>
+                        <a href="{% url 'product' product.id %}" class="dark-grey-text">{{product.title}}
+                          <span class="badge badge-pill danger-color">NEW</span>
+                        </a>
+                      </strong>
+                    </h5>
+    
+                    <h4 class="font-weight-bold blue-text">
+                      <strong>{{ product.getOffedPrice }}</strong>
+                    </h4>
+    
+                  </div>
+                  <!--Card content-->
+    
+                </div>
+                <!--Card-->
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <!-- <h2 class="text-center my-3">Newest Products</h2>
+    <div class="row mx-2">
+        {% for product in products %}
+            <div class="card col mx-1" style="width: 18rem;position: relative;">
+                <img src="{{ product.getMainImage.image.url }}" class="c-image card-img-top" alt="image">
+                <div class="card-body">
+                    <h5 class="card-title"><a class="stretched-link" href="{% url 'product' product.id %}">{{product.title}}</a></h5>
+                    <p class="card-text">{{ product.getOffedPrice }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div> -->
+    <div class="text-center" style="direction: ltr;">
+    
+    <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+            {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="?page=1" aria-label="First">
+                            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{num}}">{{num}}
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{num}}">{{num}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </nav>
+    </div>
+{% endblock content %}

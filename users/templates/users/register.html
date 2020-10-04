@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+    ul{
+        margin: 0;
+        padding: 0;
+        list-style-type: none !important;
+        text-decoration: none;
+        list-style: none;
+        color: green;
+    }
+</style>
+{% endblock head %}
+{% block content %}
+    <div class="content-section mx-2">
+        {% if form.errors %}
+           <p style="color: red">
+               Please correct the error{{ form.errors|pluralize }} below.
+           </p>
+        {% endif %}
+        <div class="card mt-5 col-lg-6 mx-auto">
+        <div class="card-body text-center">
+        <legend class="border-bottom mb-4">ایجاد حساب کاربری</legend>
+        <form class="mr-3" action="" method="POST" style="direction: rtl;">
+            {% csrf_token %}
+            <div class="field form-group">
+                <div style="color: crimson;">
+                    {{ form.username.errors }}
+                </div>                    
+                <label for="username" class="control-label">نام کاربری:</label>
+                <div class="px-5" style="direction: rtl;">
+                    <input class="form-control" id="username" name="{{ form.username.name }}" type="text" placeholder="نام کاربری" required>
+                    <p class="help" style="color:green;" >{{ form.username.help_text|safe }}</p>
+                </div>
+            </div>
+            <div class="field form-group">
+                <div style="color: crimson;">
+                    {{ form.email.errors }}
+                </div>      
+                <label for="email" class="control-label">ایمیل:</label>
+                <div class="px-5">
+                    <input class="form-control" id="email" name="{{ form.email.name }}" type="text" placeholder="ایمیل" required>
+                    <p class="help" style="color:green;">{{ form.email.help_text|safe }}</p>
+                </div>
+            </div>
+            <div class="field form-group">
+                <div style="color: crimson;">
+                    {{ form.password1.errors }}
+                </div>                  
+                <label for="password1" class="control-label">رمز عبور:</label>
+                <div class="px-5" style="direction: rtl;">
+                    <input class="form-control" id="password1" name="{{ form.password1.name }}" type="password" required>
+                    {{ form.password1.help_text|safe }}
+                </div>
+            </div>
+            <div class="field form-group">
+                <div style="color: crimson;">
+                    {{ form.password2.errors }}
+                </div>
+                <label for="password2" class="control-label">تایید رمز عبور:</label>
+                <div class="px-5">
+                    <input class="form-control" id="password2" name="{{ form.password2.name }}" type="password" required>
+                    <p class="help" style="color:green;">{{ form.password2.help_text|safe }}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">ثبت نام</button>
+            </div>
+        </form>
+        <div class="border-tp pt-1 mb-3 mr-3">
+            <small class="text-muted">اکانت کاربری داری؟<a class="mr-2" href="#">ورود</a></small>
+        </div>
+        </div>
+        </div>
+    </div>
+{% endblock content %}
