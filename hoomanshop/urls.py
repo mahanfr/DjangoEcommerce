@@ -11,6 +11,7 @@ urlpatterns = [
     path('users/',include('users.urls')),
     path('checkout/',include('checkout.urls')),
     path('management/',include('management.urls')),
+    path('dashboard/',include('dashboard.urls')),
 ]
 
 if settings.DEBUG:

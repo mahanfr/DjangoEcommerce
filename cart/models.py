@@ -25,6 +25,7 @@ class Order(models.Model):
     orderd = models.BooleanField(default=False)
     shippingAddress = models.ForeignKey('checkout.ShippingAddress',on_delete=models.SET_NULL,blank=True,null=True)
     promo_discount = models.ForeignKey('checkout.PromoCode',on_delete=models.SET_NULL,blank=True,null=True)
+    refund_discripton = models.TextField(null=True,blank=True)
     checkout_failed = models.BooleanField(default=False)
     being_delivered = models.BooleanField(default=False)
     received = models.BooleanField(default=False)

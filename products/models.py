@@ -7,9 +7,11 @@ class Product(models.Model):
     discription = models.TextField()
     details = models.TextField()
     features = models.TextField()
+    # variantable
     price = models.BigIntegerField()
     discount = models.IntegerField()
     quantity = models.BigIntegerField()
+
     review_score = models.BigIntegerField(default=0)
     review_count = models.BigIntegerField(default=0)
     images = models.ManyToManyField('products.Imagemodel')
@@ -29,6 +31,7 @@ class Product(models.Model):
 
     def __str__(self):
         return 'Product #' + str(self.id)
+
 
 class ImageModel(models.Model):
     image = models.ImageField(default='default.jpg',upload_to='product_photos')
@@ -50,5 +53,11 @@ class Comment(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=100)
+    def __str__(self):
+        return self.title
+
+class MasterCategory(models.Model):
+    title = models.CharField(max_length=100)
+    comments = models.ManyToManyField('products.Category',blank=True)
     def __str__(self):
         return self.title
