@@ -179,17 +179,17 @@
                         <span class="text-muted">{{ item.getDiscountPrice|price_toman_tag }}</span>
                     </li>
                 {% endfor %}
-                {% if order_items.promo_discount > 0 %}
+                {% if order_items.promo_discount %}
                     <li class="list-group-item d-flex justify-content-between bg-light">
                     <div class="text-success">
                         <h6 class="my-0">کد تخفیف</h6>
                     </div>
-                    <span class="text-success">{{order_items.promo_discount}} %</span>
+                    <span class="text-success">{{order_items.promo_discount.promo_discount}} %</span>
                 </li>
                 {% endif %}
                 <li class="list-group-item d-flex justify-content-between">
                     <span>قیمت نهایی (تومان)</span>
-                    <strong>{{order_items.getFinalPrice|price_toman_tag}}</strong>
+                    <strong>{{order_items.getPayablePrice|price_toman_tag}}</strong>
                 </li>
             </ul>
             

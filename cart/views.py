@@ -85,6 +85,11 @@ def Delete_product_from_cart(request,product_id):
     return redirect('order-summary')
     #return redirect('product',product_id=product_id)
 
+class AddToCart(LoginRequiredMixin,View):
+    def post(self,*args,**kwargs):
+        pass
+
+
 class OrderSummaryView(LoginRequiredMixin,View):
     def get(self,*args,**kwargs):
         try:

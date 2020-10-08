@@ -50,6 +50,12 @@ class Order(models.Model):
             price += item.getDiscountPrice()
         return price
 
+    def getPayablePrice(self):
+        finalPrice = self.getFinalPrice()
+        if(self.promo_discount):
+            return finalPrice - ((finalPrice * self.promo_discount.promo_discount) / 100)
+        return finalPrice
+
     def getTotalDiscount(self):
         return self.getTotalPrice() - self.getFinalPrice()
 

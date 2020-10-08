@@ -13,8 +13,18 @@ class ProductsView(ListView):
 
 class ProductView(View):
     def get(self,*args,**kwargs):
+        product = get_object_or_404(Product,id=kwargs['product_id'])
+        # product_sku = product.sku_set.all()
+        # sizes,colors,models = [],[],[]
+        # [sizes.append(x.size) for x in product_sku if x.size not in sizes]
+        # [colors.append(x.color) for x in product_sku if x.color not in colors]
+        # [models.append(x.model) for x in product_sku if x.model not in models]
         context = {
-            'product' : get_object_or_404(Product,id=kwargs['product_id'])
+            'product' : product,
+            # 'skus' : product_sku,
+            # 'sizes' : sizes,
+            # 'colors':colors,
+            # 'models':models,
         }
         return render(self.request,'products/product.html',context=context)
 

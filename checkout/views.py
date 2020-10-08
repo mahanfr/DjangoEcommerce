@@ -73,10 +73,9 @@ class SubmitPromoView(View):
         if form.is_valid():
             promoCode = form.cleaned_data.get('promoCode')
             try:
-                promoCode = Promocode.objects.get(code=promoCode)
-                Order.promo_discount = promoCode.promo_discount
+                promoCode = PromoCode.objects.get(code=promoCode)
                 order = Order.objects.get(user=self.request.user,orderd=False)
-                order.promo_discount = promoCode.promo_discount
+                order.promo_discount = promoCode
                 order.save()
                 messages.success(self.request,'کد با موفقیت اعمال شد')
                 return redirect('checkout')

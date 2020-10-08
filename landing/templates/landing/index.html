@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load price_template_tags %}
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'landing/index.css' %}">
@@ -48,7 +49,7 @@
                 <img src="{{product.getMainImage.image.url}}" class="c-image card-img-top mt-2" alt="image">
                 <div class="card-body">
                     <h5 class="card-title"><a class="stretched-link" href="{% url 'product' product.id %}">{{product.title}}</a></h5>
-                    <p class="card-text">{{ product.getOffedPrice }}</p>
+                    <p class="card-text">{{ product.price|price_toman_tag }}</p>
                 </div>
                 <!-- <a href="{% url 'add-to-cart' product.id %}" class="btn btn-primary">Add to Cart</a>
                 <a href="{% url 'remove-from-cart' product.id %}" class="btn btn-danger">Remove From Cart</a> -->

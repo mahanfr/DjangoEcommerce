@@ -24,7 +24,7 @@
                   <div class="card-body text-center">
                     <!--Category & Title-->
                     <a href="" class="grey-text">
-                      <h5>Shirt</h5>
+                      <h5>{{ product.categories.title }}</h5>
                     </a>
                     <h5>
                       <strong>
@@ -35,7 +35,8 @@
                     </h5>
     
                     <h4 class="font-weight-bold blue-text">
-                      <strong>{{ product.getOffedPrice }}</strong>
+                       <strong>{{ product.price }}</strong>
+                      {% comment %} <strong>{{ product.getLowestPrice }}</strong> {% endcomment %}
                     </h4>
     
                   </div>

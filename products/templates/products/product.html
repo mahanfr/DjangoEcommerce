@@ -35,13 +35,43 @@
             </div> {% endcomment %}
 
             <p class="lead font-weight-bold">{{product.title}}</p>
+            
+            <P>{{ product.discription}}</p>
 
-            <p> {{product.discription}}</p>
+            {% comment %} {% if sizes|length > 0 %}
+               <select>
+                {% for size in sizes %}
+                    {% if size %}
+                    <option value="{{size}}">{{size}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            {% endif %}
+            
+            {% if colors|length > 0 %}
+                <select>
+                {% for sku in skus %}
+                    {% if sku.color %}
+                    <option value="">{{sku.color}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            {% endif %}
 
+            {% if model in models != null %}
+                <select>
+                {% for sku in skus %}
+                    {% if sku.model %}
+                    <option value="">{{sku.model}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            {% endif %} {% endcomment %}
+            
             <p class="lead">
                 <span class="mr-1">
                 {% if product.discount == 0 %}
-                    <span>{{product.price}}</span>
+                    <span>{{ product.price }}</span>
                 {% else %}
                     <span class="mr-1">
                     <del>{{product.price}}$</del>
@@ -83,7 +113,7 @@
             quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
 
             <ul>
-                {% for feature in product.getFeaturesList %}
+                {% for feature in product.getVisiablePrice %}
                     <li>
                         {{feature}}
                     </li>
