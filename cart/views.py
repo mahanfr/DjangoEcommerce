@@ -32,6 +32,9 @@ def add_to_cart(request,product_id):
         order = Order.objects.create(user=request.user,order_date=order_date)
         order.items.add(order_item)
         messages.info(request,'item added to your shoping cart')
+
+    order.promo_discount = None
+    order.save()
     
     return redirect('order-summary')
 
@@ -59,6 +62,8 @@ def remove_from_cart(request,product_id):
         messages.info(request,'your cart is empty')
         return redirect('order-summary')
         # return redirect('product',product_id=product_id)
+    order.promo_discount = None
+    order.save()
     return redirect('order-summary')
     #return redirect('product',product_id=product_id)
 
@@ -82,6 +87,8 @@ def Delete_product_from_cart(request,product_id):
         messages.info(request,'your cart is empty')
         return redirect('order-summary')
         # return redirect('product',product_id=product_id)
+    order.promo_discount = None
+    order.save()
     return redirect('order-summary')
     #return redirect('product',product_id=product_id)
 

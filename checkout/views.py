@@ -6,6 +6,7 @@ from .models import ShippingAddress , PromoCode
 from .forms import CheckoutForm ,PromoCodeForm
 from django.http import HttpResponseForbidden
 from django.contrib import messages
+from django.utils import timezone
 
 class CheckoutView(View):
     def get(self,*args,**kwargs):
@@ -75,6 +76,12 @@ class SubmitPromoView(View):
             try:
                 promoCode = PromoCode.objects.get(code=promoCode)
                 order = Order.objects.get(user=self.request.user,orderd=False)
+                if promoCode.min_price > order.getTotalPrice():
+                    messages.error(self.request,'مبلغ سبد خرید شما از مقدار قابل اعمال کد تخفیف کمتر است')
+                    return redirect('checkout')
+                if timezone.now() >= promoCode.expirationDate:
+                    messages.error(self.request,'تاریخ مصرف کد به پایان رسیده است')
+                    return redirect('checkout')
                 order.promo_discount = promoCode
                 order.save()
                 messages.success(self.request,'کد با موفقیت اعمال شد')

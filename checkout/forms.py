@@ -7,7 +7,7 @@ class CheckoutForm(forms.Form):
     town = forms.CharField(required=True)
     postCode = forms.CharField(required=True)
     telephone = forms.CharField(required=False)
-    save_info = forms.BooleanField(widget=forms.CheckboxInput())
+    save_info = forms.BooleanField(widget=forms.CheckboxInput(),required=False)
 
     def clean_postCode(self):
         data = self.cleaned_data.get('postCode')
