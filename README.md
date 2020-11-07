@@ -32,7 +32,13 @@ The Project focus is on Backend.but if you want the same look as the preview dow
 
 Distributed under the Universal License. See `LICENSE` for more information.
 
-
+## Screen Shots
+![alt text](https://github.com/mahanfarzaneh2000/DjangoEcommerce/screenshots/image1.jpg?raw=true)
+</br></br>
+![alt text](https://github.com/mahanfarzaneh2000/DjangoEcommerce/screenshots/image2.jpg?raw=true)
+</br></br>
+![alt text](https://github.com/mahanfarzaneh2000/DjangoEcommerce/screenshots/image3.jpg?raw=true)
+</br></br>
 
 <!-- CONTACT -->
 ## Contact
