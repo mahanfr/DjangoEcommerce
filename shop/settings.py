@@ -60,7 +60,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'hoomanshop.urls'
+ROOT_URLCONF = 'shop.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +78,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hoomanshop.wsgi.application'
+WSGI_APPLICATION = 'shop.wsgi.application'
 
 
 # Database

@@ -10,8 +10,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A personal project wriiten in python using django framework and <a href="https://bootstrap.rtlcss.com/">rtl-bootstrap</a>.
-But justlike every good program is full of bugs and problems.feel free to modify and make it better!!!.</br></br>
+Personal project wriiten in python using django framework.
+Just like every good program This one is full of bugs and problems.feel free to modify and make it better!!!.</br></br>
+## How To Use:
+The Project focus is on Backend.but if you want the same look as the preview download <a href="https://bootstrap.rtlcss.com/">rtl-bootstrap</a> and add it to media direcory.</br></br>
 ## Apps:
 * User : django defult user and profile model for saving user data 
 * Cart : models and views for managing shopingcart
